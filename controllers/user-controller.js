@@ -4,6 +4,7 @@ const userController = {
     getAllUsers(req, res) {
         User.find({})
             .select('-__v')
+            .populate('thoughts')
             .then(dbUserData => res.json(dbUserData))
             .catch(err => res.status(400).json(err));
     },
